@@ -9,7 +9,6 @@
   <meta name="description" content="Web site created using create-react-app" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
   <link rel="preload" href="%PUBLIC_URL%/logo192.webp" as="image">
-  <link rel="preload" href="%PUBLIC_URL%/main-pic.webp" as="image">
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -26,6 +25,12 @@
     -->
   <title>Brian David</title>
   <style>
+    @media only screen and (max-width: 480px) {
+      link[rel="preload"] {
+        display: none;
+      }
+    }
+
     #backdrop {
       position: fixed;
       top: 0;
@@ -106,6 +111,14 @@
     let themeValue = localStorage.getItem('userTheme');
     if (themeValue === 'lightTheme') {
       document.getElementById('backdrop').style.background = "#004d40";
+    }
+    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (!isMobile && window.innerWidth > 600) {
+      var link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = '/main-pic.webp';
+      link.as = 'image';
+      document.head.appendChild(link);
     }
   </script>
   <noscript>You need to enable JavaScript to run this app.</noscript>
