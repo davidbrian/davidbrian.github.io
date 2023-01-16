@@ -4,6 +4,7 @@ import { useSpring, animated, config } from 'react-spring';
 const FadeInOnView = ({ children, delay }) => {
     const ref = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
+    // Animation
     const fade = useSpring({
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0%)" : "translateY(10%)",
