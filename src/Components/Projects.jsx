@@ -1,5 +1,5 @@
 import { createStyles, makeStyles, Typography } from '@material-ui/core';
-import skypass from "../Images/1.png";
+import skypass from "../Images/skypass.webp";
 import React from 'react';
 import ProjectItem from './Project/ProjectItem';
 import FadeInOnView from './Animation/FadeInView';

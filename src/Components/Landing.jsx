@@ -1,7 +1,6 @@
 import React from 'react';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import createStyles from "@material-ui/core/styles/createStyles";
-import myImage from "../main-pic.png";
 import { Button, Grid, Hidden, Typography } from '@material-ui/core';
 import FadeInOnView from './Animation/FadeInView';
 
@@ -90,7 +89,7 @@ const Landing = ({ scrollToContact }) => {
                     <Grid container direction="column" justify="center" alignItems="center" className={classes.stretch}>
                         <FadeInOnView delay={800}>
                             <div className={classes.responsiveImgContainer}>
-                                <img id="landing-img" className={classes.responsiveImg} src={myImage} alt="logo" />
+                                <img id="landing-img" className={classes.responsiveImg} src={process.env.PUBLIC_URL + '/main-pic.webp'} alt="logo" />
                             </div>
                         </FadeInOnView>
                     </Grid>
