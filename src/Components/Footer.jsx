@@ -214,7 +214,7 @@ const Footer = () => {
             </div>
             <div
                 className={`${classes.socialContainer} fade-from-left`}
-                style={{ animationDelay: '1.2s', }}
+                style={{ animationDelay: '900ms', }}
             >
                 <div className={classes.verticalProgressContainer} >
                     <animated.div className={classes.progress} style={progressAnimation}></animated.div>
