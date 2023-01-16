@@ -1,16 +1,17 @@
 import React from 'react';
-import Theme from "./Theme.jsx";
+import Theme from "./Theme";
 import "./App.css";
-import { Container, createStyles, makeStyles } from "@material-ui/core";
-import Landing from "./Components/Landing.jsx";
-import Navbar from "./Components/Layout/Navabar.jsx";
-import About from "./Components/About.jsx";
-import Experience from "./Components/Experience.jsx";
-import Projects from "./Components/Projects.jsx";
-import Footer from "./Components/Footer.jsx";
+import { Container, makeStyles } from "@material-ui/core";
+import Landing from "./Components/Landing";
+import Navbar from "./Components/Layout/Navbar";
+import About from "./Components/About";
+import Experience from "./Components/Experience";
+import Projects from "./Components/Projects";
+import Footer from "./Components/Footer";
 import { useSpring } from 'react-spring';
 
-const useStyles = makeStyles((theme) => createStyles({
+//Styling
+const useStyles = makeStyles((theme) => ({
   containerStyle: {
     [theme.breakpoints.between('md', 'lg')]: {
       paddingLeft: "90px",
@@ -20,28 +21,29 @@ const useStyles = makeStyles((theme) => createStyles({
 
 const App = () => {
   const classes = useStyles();
+  // Refs for different sections
   const landingRef = React.useRef(null);
   const aboutRef = React.useRef(null);
   const experienceRef = React.useRef(null);
   const projectsRef = React.useRef(null);
   const contactRef = React.useRef(null);
 
+  // Spring animation state
   const [, setScroll, stopScroll] = useSpring(() => ({ y: 0 }));
-
   let isStopped = false;
 
+  // Stop animation on mouse wheel
   const onWheel = () => {
     isStopped = true;
     window.removeEventListener('wheel', onWheel);
   };
 
+  // Scroll to target element
   const scrollToTarget = (targetElement) => {
     stopScroll();
     const element = targetElement.current;
     const value = (window.scrollY + element.getBoundingClientRect().top) - (document.documentElement.clientHeight / 4);
-
     window.addEventListener('wheel', onWheel);
-
     setScroll({
       y: value,
       reset: true,
