@@ -1,9 +1,9 @@
-import { createMuiTheme, CssBaseline, ThemeProvider, responsiveFontSizes, fade } from "@material-ui/core"
+import { createMuiTheme, CssBaseline, ThemeProvider, responsiveFontSizes } from "@material-ui/core";
 import grey from "@material-ui/core/colors/grey";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import teal from '@material-ui/core/colors/teal';
 
-import React from "react"
+import React from "react";
 
 export const UpdateUserThemeContext = React.createContext();
 export const UserThemeContext = React.createContext();
@@ -53,9 +53,9 @@ const Theme = ({ children }) => {
                 },
             }
         }
-    }
+    };
 
-    const VALID_THEME = React.useMemo(() => { return ['darkTheme', 'lightTheme'] }, []);
+    const VALID_THEME = React.useMemo(() => { return ['darkTheme', 'lightTheme']; }, []);
 
     React.useEffect(() => {
         let themeValue = localStorage.getItem('userTheme');
@@ -64,13 +64,13 @@ const Theme = ({ children }) => {
         } else {
             setUserTheme(VALID_THEME[0]);
         }
-    }, []);
+    }, [VALID_THEME]);
 
     React.useEffect(() => {
         if (VALID_THEME.includes(userTheme)) {
             localStorage.setItem('userTheme', userTheme);
         }
-    }, [userTheme, VALID_THEME])
+    }, [userTheme, VALID_THEME]);
 
     let theme = createMuiTheme(VALID_THEME.includes(userTheme) ? themes[userTheme] : themes.darkTheme);
     theme = responsiveFontSizes(theme);
@@ -84,7 +84,7 @@ const Theme = ({ children }) => {
                 </ThemeProvider>
             </UserThemeContext.Provider >
         </UpdateUserThemeContext.Provider >
-    )
-}
+    );
+};
 
 export default Theme;

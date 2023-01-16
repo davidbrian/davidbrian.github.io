@@ -9,7 +9,6 @@ import Experience from "./Components/Experience.jsx";
 import Projects from "./Components/Projects.jsx";
 import Footer from "./Components/Footer.jsx";
 import { useSpring } from 'react-spring';
-import FadeInOnView from './Components/Animation/FadeInView.jsx';
 
 const useStyles = makeStyles((theme) => createStyles({
   containerStyle: {

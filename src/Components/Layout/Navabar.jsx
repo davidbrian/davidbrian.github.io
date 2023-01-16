@@ -167,7 +167,6 @@ const Navbar = ({
                             <div className={classes.desktopNav}>
                                 {
                                     Object.entries(navigations).map((t, k) => {
-                                        console.log(t);
                                         return (
                                             <Button
                                                 key={t[0]}

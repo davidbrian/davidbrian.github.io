@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Button, Chip, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => createStyles({
 }));
 
 const ProjectItem = (props) => {
-    const { tools, title, description, codeLink, liveLink, isRight, img } = props;
+    const { tools, title, description, img } = props;
     const classes = useStyles(props);
     return (
         <Grid container alignItems="center" className={classes.projectItemContainer}>
@@ -70,7 +70,7 @@ const ProjectItem = (props) => {
                             tools.map((tool) => {
                                 return (
                                     <Chip key={tool} label={tool} size="small" className={classes.chipStyle} />
-                                )
+                                );
                             })
                         }
                     </div>
@@ -82,7 +82,7 @@ const ProjectItem = (props) => {
                     </Button>
                 </div>
             </Grid>
-        </Grid>)
-}
+        </Grid>);
+};
 
-export default ProjectItem
+export default ProjectItem;
