@@ -17,3 +17,146 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
 }
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(2% 0 95% 0);
+  }
+
+  2%,
+  8% {
+    clip-path: inset(78% 0 0 0);
+    transform: translate(-5%, 0);
+  }
+
+  6% {
+    clip-path: inset(78% 0 0 0);
+    transform: translate(5%, 0);
+  }
+
+  9% {
+    clip-path: inset(78% 0 0 0);
+    transform: translate(0, 0);
+  }
+
+  10% {
+    clip-path: inset(44% 0 46% 0);
+    transform: translate(5%, 0);
+  }
+
+  13% {
+    clip-path: inset(44% 0 46% 0);
+    transform: translate(0, 0);
+  }
+
+  14%,
+  21% {
+    clip-path: inset(0 0 100% 0);
+    transform: translate(5%, 0);
+  }
+
+  15%,
+  20% {
+    clip-path: inset(40% 0 60% 0);
+    transform: translate(5%, 0);
+  }
+
+  25% {
+    clip-path: inset(40% 0 15% 0);
+    transform: translate(5%, 0);
+  }
+
+  30% {
+    clip-path: inset(40% 0 15% 0);
+    transform: translate(-5%, 0);
+  }
+
+  35%,
+  45% {
+    clip-path: inset(63% 0 20% 0);
+    transform: translate(-5%, 0);
+  }
+
+  40% {
+    clip-path: inset(63% 0 20% 0);
+    transform: translate(5%, 0);
+  }
+
+  50% {
+    clip-path: inset(63% 0 20% 0);
+    transform: translate(0, 0);
+  }
+
+  55% {
+    clip-path: inset(0 0 90% 0);
+    transform: translate(5%, 0);
+  }
+
+  60%,
+  69% {
+    clip-path: inset(0 0 90% 0);
+    transform: translate(0, 0);
+  }
+
+  31% {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  70%,
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0, 0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-from-left {
+  animation: fadeInFromLeft 250ms ease-in-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-from-top {
+  animation: fadeInFromTop 250ms ease-in-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

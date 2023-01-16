@@ -1,4 +1,4 @@
-import { Button, CircularProgress, createStyles, Grid, IconButton, Link, makeStyles, Paper, TextField, Typography } from '@material-ui/core'
+import { Button, CircularProgress, createStyles, Grid, IconButton, Link, makeStyles, Paper, TextField, Typography } from '@material-ui/core';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import DoneIcon from '@material-ui/icons/Done';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
@@ -7,7 +7,7 @@ import LanguageIcon from "@material-ui/icons/Language";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { green, red } from '@material-ui/core/colors';
 import SendIcon from '@material-ui/icons/Send';
-import React from 'react'
+import React from 'react';
 import { useSpring, animated, config } from 'react-spring';
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -82,10 +82,10 @@ const Footer = () => {
         if (email === '' || message === '') {
             let errStatus = '';
             if (email.trim() === '') {
-                errStatus = `${errStatus}requiredEmail`
+                errStatus = `${errStatus}requiredEmail`;
             }
             if (message.trim() === '') {
-                errStatus = `${errStatus}requiredMessage`
+                errStatus = `${errStatus}requiredMessage`;
             }
             setStatus(errStatus);
             return;
@@ -108,7 +108,7 @@ const Footer = () => {
             }
         };
         xhr.send(data);
-    }
+    };
 
     const [
         progressAnimation,
@@ -122,7 +122,7 @@ const Footer = () => {
         }
     ));
 
-    setProgressAnimation({ height: scrolled })
+    setProgressAnimation({ height: scrolled });
 
     const handleScroll = React.useCallback(() => {
         stopProgressAnimation();
@@ -134,7 +134,7 @@ const Footer = () => {
 
     React.useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-    }, [handleScroll])
+    }, [handleScroll]);
 
     return (
         <>
@@ -165,7 +165,7 @@ const Footer = () => {
                                     fullWidth
                                     name="email"
                                     value={email}
-                                    onChange={(e) => { setEmail(e.target.value) }} />
+                                    onChange={(e) => { setEmail(e.target.value); }} />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -188,7 +188,7 @@ const Footer = () => {
                                     rowsMax={4}
                                     name="message"
                                     value={message}
-                                    onChange={(e) => { setMessage(e.target.value) }}
+                                    onChange={(e) => { setMessage(e.target.value); }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -212,7 +212,10 @@ const Footer = () => {
                     </form>
                 </Paper>
             </div>
-            <div className={classes.socialContainer}>
+            <div
+                className={`${classes.socialContainer} fade-from-left`}
+                style={{ animationDelay: '1.2s', }}
+            >
                 <div className={classes.verticalProgressContainer} >
                     <animated.div className={classes.progress} style={progressAnimation}></animated.div>
                 </div>
@@ -232,7 +235,7 @@ const Footer = () => {
                 </Link>
             </Typography>
         </>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;
