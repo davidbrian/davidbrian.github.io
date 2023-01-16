@@ -2,14 +2,17 @@ import { createMuiTheme, CssBaseline, ThemeProvider, responsiveFontSizes } from 
 import grey from "@material-ui/core/colors/grey";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import teal from '@material-ui/core/colors/teal';
+import { createContext, useMemo, useEffect, useState } from "react";
 
-import React from "react";
-
-export const UpdateUserThemeContext = React.createContext();
-export const UserThemeContext = React.createContext();
+// Contexts for theme and theme update
+export const UpdateUserThemeContext = createContext();
+export const UserThemeContext = createContext();
 
 const Theme = ({ children }) => {
-    const [userTheme, setUserTheme] = React.useState(null);
+    // State to store the user selected theme
+    const [userTheme, setUserTheme] = useState(null);
+
+    // Themes available
     const themes = {
         lightTheme: {
             palette: {
@@ -55,23 +58,27 @@ const Theme = ({ children }) => {
         }
     };
 
-    const VALID_THEME = React.useMemo(() => { return ['darkTheme', 'lightTheme']; }, []);
+    // Valid themes
+    const VALID_THEME = useMemo(() => ['darkTheme', 'lightTheme'], []);
 
-    React.useEffect(() => {
-        let themeValue = localStorage.getItem('userTheme');
-        if (VALID_THEME.includes(themeValue)) {
-            setUserTheme(themeValue);
+    // Effect to get the theme from local storage on mount
+    useEffect(() => {
+        const storedTheme = localStorage.getItem('userTheme');
+        if (VALID_THEME.includes(storedTheme)) {
+            setUserTheme(storedTheme);
         } else {
             setUserTheme(VALID_THEME[0]);
         }
     }, [VALID_THEME]);
 
-    React.useEffect(() => {
+    // Effect to store the theme in local storage on update
+    useEffect(() => {
         if (VALID_THEME.includes(userTheme)) {
             localStorage.setItem('userTheme', userTheme);
         }
     }, [userTheme, VALID_THEME]);
 
+    // Get the current theme
     let theme = createMuiTheme(VALID_THEME.includes(userTheme) ? themes[userTheme] : themes.darkTheme);
     theme = responsiveFontSizes(theme);
 
