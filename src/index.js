@@ -32,7 +32,7 @@ const animateBackdrop = async () => {
 };
 
 // Wait for 1s before starting animation
-delay(1000).then(animateBackdrop);
+delay(100).then(animateBackdrop);
 
 
 // If you want to start measuring performance in your app, pass a functions
