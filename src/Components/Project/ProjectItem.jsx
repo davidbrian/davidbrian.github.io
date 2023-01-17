@@ -49,6 +49,37 @@ const useStyles = makeStyles((theme) => createStyles({
     }
 }));
 
+const CodeButton = ({ onClick }) => {
+    return (
+        <Button variant="outlined" color="primary" startIcon={<GitHubIcon />} onClick={onClick}>
+            Code
+        </Button>
+    );
+};
+
+const LiveButton = ({ onClick }) => {
+    return (
+        <Button variant="contained" color="primary" startIcon={<ExitToAppIcon />} onClick={onClick}>
+            Live
+        </Button>
+    );
+};
+
+const ToolsUsed = ({ tools }) => {
+    const classes = useStyles(tools);
+    return (
+        <div className={classes.toolsUsed}>
+            {
+                tools.map((tool) => {
+                    return (
+                        <Chip key={tool} label={tool} size="small" className={classes.chipStyle} />
+                    );
+                })
+            }
+        </div>
+    );
+};
+
 const ProjectItem = (props) => {
     const { tools, title, description, img } = props;
     const classes = useStyles(props);
@@ -65,21 +96,9 @@ const ProjectItem = (props) => {
                     <Typography variant="body1" component="p">
                         {description}
                     </Typography>
-                    <div className={classes.toolsUsed}>
-                        {
-                            tools.map((tool) => {
-                                return (
-                                    <Chip key={tool} label={tool} size="small" className={classes.chipStyle} />
-                                );
-                            })
-                        }
-                    </div>
-                    <Button variant="outlined" color="primary" startIcon={<GitHubIcon />} >
-                        Code
-                    </Button>
-                    <Button variant="contained" color="primary" startIcon={<ExitToAppIcon />} >
-                        Live
-                    </Button>
+                    <ToolsUsed tools={tools} />
+                    <CodeButton onClick={() => console.log("Code button clicked")} />
+                    <LiveButton onClick={() => console.log("Live button clicked")} />
                 </div>
             </Grid>
         </Grid>);
