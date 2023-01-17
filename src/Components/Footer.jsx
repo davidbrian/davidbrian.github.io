@@ -7,7 +7,7 @@ import LanguageIcon from "@material-ui/icons/Language";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { green, red } from '@material-ui/core/colors';
 import SendIcon from '@material-ui/icons/Send';
-import React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -68,13 +68,13 @@ const useStyles = makeStyles((theme) => createStyles({
 
 const Footer = () => {
     const classes = useStyles();
-    const [status, setStatus] = React.useState('');
-    const [result, setResult] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [message, setMessage] = React.useState('');
-    const [scrolled, setScrolled] = React.useState('0%');
+    const [status, setStatus] = useState('');
+    const [result, setResult] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [scrolled, setScrolled] = useState('0%');
 
-    const submitForm = (ev) => {
+    const submitForm = async (ev) => {
         ev.preventDefault();
         setStatus('LOADING');
         const form = ev.target;
@@ -90,13 +90,16 @@ const Footer = () => {
             setStatus(errStatus);
             return;
         }
-        const xhr = new XMLHttpRequest();
-        xhr.open(form.method, form.action);
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState !== XMLHttpRequest.DONE) return;
-            let data = JSON.parse(xhr.response);
-            if (xhr.status === 200) {
+        try {
+            const res = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+            const json = await res.json();
+            if (res.ok) {
                 form.reset();
                 setEmail('');
                 setMessage('');
@@ -104,10 +107,12 @@ const Footer = () => {
                 setResult("Thank you for reaching out!");
             } else {
                 setStatus('FAILED');
-                setResult(data.error);
+                setResult(json.error);
             }
-        };
-        xhr.send(data);
+        } catch (err) {
+            setStatus('FAILED');
+            setResult("There was an error with your request. Please try again later.");
+        }
     };
 
     const [
@@ -124,7 +129,7 @@ const Footer = () => {
 
     setProgressAnimation({ height: scrolled });
 
-    const handleScroll = React.useCallback(() => {
+    const handleScroll = useCallback(() => {
         stopProgressAnimation();
         let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -132,109 +137,94 @@ const Footer = () => {
         setScrolled(scrolled + "%");
     }, [setScrolled, stopProgressAnimation]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         window.addEventListener('scroll', handleScroll);
     }, [handleScroll]);
 
-    return (
-        <>
-            <div className={classes.centerPaper}>
-                <Paper elevation={3} className={classes.contactContainer}>
-                    <Typography variant="h4" component="h2" gutterBottom className={classes.mainText}>
-                        Get in touch
-                    </Typography>
-                    <form onSubmit={submitForm} action="https://formspree.io/f/xyybvode" method="POST">
-                        <Grid container spacing={3}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    {
-                                    ...(
-                                        status.includes("requiredEmail") ?
-                                            {
-                                                error: true,
-                                                helperText: 'Email is required.'
-
-                                            }
-                                            :
-                                            {}
-                                    )
-                                    }
-                                    id="email"
-                                    type="email"
-                                    label="Email"
-                                    fullWidth
-                                    name="email"
-                                    value={email}
-                                    onChange={(e) => { setEmail(e.target.value); }} />
+    return (<>
+        <div className={classes.centerPaper}>
+            <Paper elevation={3} className={classes.contactContainer}>
+                <Typography variant="h4" component="h2" gutterBottom className={classes.mainText}>
+                    Get in touch
+                </Typography>
+                <form onSubmit={submitForm} action="https://formspree.io/f/xyybvode" method="POST">
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <TextField
+                                error={status.includes("requiredEmail")}
+                                helperText={status.includes("requiredEmail") ? 'Email is required.' : ''}
+                                id="email"
+                                type="email"
+                                label="Email"
+                                fullWidth
+                                name="email"
+                                value={email}
+                                onChange={(e) => { setEmail(e.target.value); }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                error={status.includes("requiredMessage")}
+                                helperText={status.includes("requiredMessage") ? 'Message is required.' : ''}
+                                id="message"
+                                label="Message"
+                                multiline
+                                fullWidth
+                                rowsMax={4}
+                                name="message"
+                                value={message}
+                                onChange={(e) => { setMessage(e.target.value); }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
+                                startIcon={<SendIcon />}
+                                type="submit"
+                            >Send</Button>
+                        </Grid>
+                        <Grid
+                            container
+                            direction="row"
+                            alignItems="center"
+                            style={{ marginLeft: ".6rem" }}
+                        >
+                            <Grid item>
+                                {status === 'LOADING' && <CircularProgress color="primary" size={20} />}
+                                {status === 'SENT' && <DoneIcon style={{ color: green[500], verticalAlign: "middle" }} />}
+                                {status === 'FAILED' && <ErrorOutlineIcon style={{ color: red[500] }} />}
                             </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    {
-                                    ...(
-                                        status.includes("requiredMessage") ?
-                                            {
-                                                error: true,
-                                                helperText: 'Message is required.'
-
-                                            }
-                                            :
-                                            {}
-                                    )
-                                    }
-                                    id="message"
-                                    label="Message"
-                                    multiline
-                                    fullWidth
-                                    rowsMax={4}
-                                    name="message"
-                                    value={message}
-                                    onChange={(e) => { setMessage(e.target.value); }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                    startIcon={<SendIcon />}
-                                    type="submit"
-                                >Send</Button>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography variant="body2" component="p" gutterBottom style={{ verticalAlign: "middle" }}>
-                                    {status === 'LOADING' && <CircularProgress color="primary" size={20} />}
-                                    {status === 'SENT' && <DoneIcon style={{ color: green[500], verticalAlign: "middle" }} />}
-                                    {status === 'FAILED' && <ErrorOutlineIcon style={{ color: red[500] }} />}
-                                    {result}
+                            <Grid item>
+                                <Typography variant="body2" component="p"  >&nbsp;{result}
                                 </Typography>
                             </Grid>
                         </Grid>
-                    </form>
-                </Paper>
+                    </Grid>
+                </form>
+            </Paper>
+        </div>
+        <div className={`${classes.socialContainer} fade-from-left`} style={{ animationDelay: '900ms' }}>
+            <div className={classes.verticalProgressContainer} >
+                <animated.div className={classes.progress} style={progressAnimation}></animated.div>
             </div>
-            <div
-                className={`${classes.socialContainer} fade-from-left`}
-                style={{ animationDelay: '900ms', }}
-            >
-                <div className={classes.verticalProgressContainer} >
-                    <animated.div className={classes.progress} style={progressAnimation}></animated.div>
-                </div>
-                <IconButton className={classes.iconButton} href="https://davidbrian.github.io/" target="_blank">
-                    <LanguageIcon />
-                </IconButton>
-                <IconButton className={classes.iconButton} href="https://www.linkedin.com/in/brian-david-754a33202/" target="_blank">
-                    <LinkedInIcon />
-                </IconButton>
-                <IconButton className={classes.iconButton} href="https://github.com/davidbrian" target="_blank">
-                    <GitHubIcon />
-                </IconButton>
-            </div>
-            <Typography variant="body2" className={classes.signStyle}>
-                <Link href="https://github.com/davidbrian" target="_blank" variant="body2" underline="none">
-                    Designed & Developed by Brian David
-                </Link>
-            </Typography>
-        </>
+            <IconButton className={classes.iconButton} href="https://davidbrian.github.io/" target="_blank">
+                <LanguageIcon />
+            </IconButton>
+            <IconButton className={classes.iconButton} href="https://www.linkedin.com/in/brian-david-754a33202/" target="_blank">
+                <LinkedInIcon />
+            </IconButton>
+            <IconButton className={classes.iconButton} href="https://github.com/davidbrian" target="_blank">
+                <GitHubIcon />
+            </IconButton>
+        </div>
+        <Typography variant="body2" className={classes.signStyle}>
+            <Link href="https://github.com/davidbrian" target="_blank" variant="body2" underline="none">
+                Designed & Developed by Brian David
+            </Link>
+        </Typography>
+    </>
     );
 };
 

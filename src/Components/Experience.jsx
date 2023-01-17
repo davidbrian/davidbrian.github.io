@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Experience = () => {
     const classes = useStyles();
-    const [selectedTab, setSelectedTab] = React.useState(0);
+    const [selectedTab, setSelectedTab] = useState(0);
     const isVertical = useMediaQuery('(min-width:960px)');
 
     const handleChange = (event, newValue) => {

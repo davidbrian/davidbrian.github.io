@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef } from 'react';
 import Theme from "./Theme";
 import "./App.css";
 import { Container, makeStyles } from "@material-ui/core";
@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
   // Refs for different sections
-  const landingRef = React.useRef(null);
-  const aboutRef = React.useRef(null);
-  const experienceRef = React.useRef(null);
-  const projectsRef = React.useRef(null);
-  const contactRef = React.useRef(null);
+  const landingRef = useRef(null);
+  const aboutRef = useRef(null);
+  const experienceRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactRef = useRef(null);
 
   // Spring animation state
   const [, setScroll, stopScroll] = useSpring(() => ({ y: 0 }));
