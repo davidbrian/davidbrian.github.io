@@ -65,11 +65,11 @@ const Landing = ({ scrollToContact }) => {
                             <Typography variant="h2" component="h1" className={classes.mainText}>
                                 Brian David.
                             </Typography>
-                            <Typography variant="h3" component="h2">
-                                I build things for the web.
+                            <Typography variant="h4" component="h4">
+                                Bringing software ideas to life.
                             </Typography>
                             <Typography variant="body2" component="p" className={classes.description}>
-                                I’m a Software Engineer based in Makati, Philippines who focuses on writing clean, elegant and efficient code.
+                                Experience in full-stack development and a focus on delivering clean and efficient code.
                             </Typography>
                             <Button variant="outlined" color="primary" onClick={() => { scrollToContact(); }}>
                                 Get in touch

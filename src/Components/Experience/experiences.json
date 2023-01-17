@@ -1,0 +1,24 @@
+{
+    "DBOS PH": [
+        "Developing new features and functionality for the app.",
+        "Troubleshooting and fixing bugs and other issues with the app.",
+        "Maintaining and updating the app to ensure it remains stable and secure.",
+        "Collaborating with other team members to identify and implement improvements to the app."
+    ],
+    "YNS PH": [
+        "I contributed to the development of the microservice by working on its business logic, designing and implementing API endpoints, developing a custom rules algorithm, and implementing UI/UX designs.",
+        "Engineering a messaging bot.",
+        "Creating a WordPress plugin.",
+        "Designing and developing a web-based tool for storing and comparing test evidences.",
+        "Developing a hybrid mobile app."
+    ],
+    "TSPG IT SOLUTIONS": [
+        "Developing a web-based application for an online book of accounts and invoicing.",
+        "Designing and developing a website for the online House & Condo showcase portfolio."
+    ],
+    "Freelance": [
+        "Designing and developing a statistics monitoring system with e-commerce capabilities for a pineapple farm.",
+        "Developing an attendance management system for a dance studio.",
+        "Designing and developing mobile responsive themes for web applications."
+    ]
+}

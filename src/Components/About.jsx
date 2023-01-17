@@ -29,7 +29,12 @@ const About = () => {
         "Node.js",
         "PHP",
         "HTML & CSS",
-        "SQL & NoSQL"
+        "SQL & NoSQL",
+        "Docker",
+        "Tailwind",
+        "Material UI",
+        "Next JS",
+        "Typescript",
     ];
     const skillList = skills.map((skill, index) => (
         <Grid item xs={6} key={index} className={classes.skillsStyles}>
@@ -45,19 +50,19 @@ const About = () => {
                         My story
                     </Typography>
                     <Typography variant="body1" component="p" gutterBottom>
-                        Hello! I'm Brian, a Software Engineer based in Makati, Philippines.
+                        Hello! My name is Brian and I work on the constantly changing and expanding field of software engineering. My interest in development began in 2017 when I decided to create a theme for a game website. I quickly realized how much I enjoyed coding and building things online.
                     </Typography>
                     <br />
                     <Typography variant="body1" component="p" gutterBottom>
-                        I live my life by creating things on the internet, it could be a website, applications or anything. My goal is always to develop products that provide pixel-perfect, performant experience and learning new skills that would help me grow and level up as an individual.
+                        Upon completing my studies at Far Eastern University, I have made a commitment to continuously learning and expanding my skills as a developer. I always strive to stay updated with the latest technologies and industry developments, and am constantly seeking new opportunities to enhance my abilities. The journey thus far has been exhilarating and I am eager to see what the future holds for me as a software engineer.
                     </Typography>
                     <br />
                     <Typography variant="body1" component="p" gutterBottom>
-                        Shortly after graduating from Far Eastern University, I joined the engineering team at YNS PH where I work on a wide variety of interesting and meaningful projects on a daily basis.
+                        Throughout my career, I've had the opportunity to work as a freelancer, at a start-up, and an outsourcing company. My main focus these days is on building accessible and inclusive digital products and experiences for various clients.
                     </Typography>
                     <br />
                     <Typography variant="body1" component="p" gutterBottom>
-                        Here are a few technologies I've been working with recently:
+                        These are some of the technologies I've been working on:
                     </Typography>
                     <Grid container spacing={0} className={classes.skillsContainerStyles}>
                         {skillList}
