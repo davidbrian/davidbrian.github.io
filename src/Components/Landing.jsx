@@ -18,19 +18,13 @@ const useStyles = makeStyles((theme) => createStyles({
         overflow: "hidden",
         borderRadius: "10px",
         height: "calc(100% - 10px)",
-        background: theme.palette.secondary.main,
-        '&:hover, &:focus, &:active': {
-            '& img': {
-                animation: '0',
-                clipPath: 'none',
-                transform: 'none',
-            },
-        },
+        background: theme.palette.secondary.main
     },
     responsiveImg: {
         maxWidth: "100%",
         height: "auto",
-        animation: "glitch 500ms infinite alternate ease-in-out",
+        animation: "glitch 500ms alternate ease-in-out",
+        animationIterationCount: "6"
     },
     mainText: {
         color: theme.palette.mainText.main
