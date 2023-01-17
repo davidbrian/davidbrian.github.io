@@ -42,6 +42,21 @@ const useStyles = makeStyles((theme) => createStyles({
             padding: "4px 8px",
         }
     },
+    logoContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    letter: {
+        fontSize: 32,
+        fontWeight: 'bold',
+    },
+    letterA: {
+        color: theme.palette.primary.main,
+    },
+    letterB: {
+        color: theme.palette.secondary.main,
+    },
 }));
 
 const Navbar = ({
@@ -119,7 +134,14 @@ const Navbar = ({
                         <Toolbar>
                             <Typography color="primary" className={`${classes.navIcon} fade-in`}>
                                 <Link variant="h6" component="button" onClick={() => { scrollToLanding(); }} underline="none">
-                                    David
+                                    <div className={classes.logoContainer}>
+                                        <Typography variant="h2" className={`${classes.letter} ${classes.letterA}`}>
+                                            B
+                                        </Typography>
+                                        <Typography variant="h2" className={`${classes.letter} ${classes.letterB}`}>
+                                            D
+                                        </Typography>
+                                    </div>
                                 </Link>
                             </Typography>
                             <div className={classes.desktopNav}>
@@ -150,7 +172,8 @@ const Navbar = ({
                                 target="_blank" rel="noopener noreferrer">
                                 Resume
                             </Button>
-                            <div className={classes.mobileNav}>
+                            <div className={`${classes.mobileNav} fade-from-top`}
+                                style={{ animationDelay: '700ms', }}>
                                 <IconButton className={classes.margin} onClick={() => { toggleDrawer(); }}>
                                     <MenuIcon />
                                 </IconButton>
