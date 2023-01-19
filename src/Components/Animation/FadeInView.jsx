@@ -23,7 +23,7 @@ const FadeInOnView = ({ children, delay }) => {
             });
         }, {
             rootMargin: '0px 0px -1% 0px',
-            threshold: 0.5
+            threshold: 0.01
         });
         observer.observe(ref.current);
         return () => observer.disconnect();

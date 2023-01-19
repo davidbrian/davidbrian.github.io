@@ -67,6 +67,8 @@ const Experience = () => {
                     <Typography variant="h3" component="h2" gutterBottom className={classes.mainText}>
                         Where I’ve Worked
                     </Typography>
+                </FadeInOnView >
+                <FadeInOnView delay={50} >
                     <div className={classes.root}>
                         <Tabs
                             className={classes.tabsContainer}
