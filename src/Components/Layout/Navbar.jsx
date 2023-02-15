@@ -168,7 +168,7 @@ const Navbar = ({
                                 style={{ animationDelay: '600ms', }}
                                 color="primary"
                                 variant="outlined"
-                                href={process.env.PUBLIC_URL + `/Brian%20David%20Tabuada's%20Resume.pdf`}
+                                href={process.env.PUBLIC_URL + `/brian-david-tabuada's-resume.pdf`}
                                 target="_blank" rel="noopener noreferrer">
                                 Resume
                             </Button>
