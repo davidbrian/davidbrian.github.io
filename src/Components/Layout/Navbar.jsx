@@ -14,7 +14,8 @@ import MaterialUISwitch from './MaterialUISwitch';
 
 const useStyles = makeStyles((theme) => createStyles({
     styledAppBar: {
-        background: fade(theme.palette.background.default, 0.9),
+        backgroundColor: fade(theme.palette.background.default, 0.8),
+        backdropFilter: 'blur(10px)',
         boxShadow: "none"
     },
     navIcon: {
