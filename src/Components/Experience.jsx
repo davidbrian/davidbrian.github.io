@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     aboutContainer: {
-        maxWidth: "1100px",
+        maxWidth: "100%",
         marginBottom: "10rem"
     },
     mainText: {
