@@ -83,7 +83,7 @@ const Landing = ({ scrollToContact }) => {
                     <Grid container direction="column" justify="center" alignItems="center" className={classes.stretch}>
                         <FadeInOnView delay={800}>
                             <div className={classes.responsiveImgContainer}>
-                                <img id="landing-img" className={classes.responsiveImg} src={process.env.PUBLIC_URL + '/main-pic.webp'} alt="logo" />
+                                <img id="landing-img" className={classes.responsiveImg} src={process.env.PUBLIC_URL + '/snorlax.png'} alt="logo" />
                             </div>
                         </FadeInOnView>
                     </Grid>
